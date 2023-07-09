@@ -1,0 +1,22 @@
+- implementation: nodestream.pipeline:IterableExtractor
+  factory: range
+  arguments:
+    stop: 100000
+
+- implementation: nodestream.interpreting:Interpreter
+  arguments:
+    interpretations:
+      - type: source_node
+        node_type: Number
+        key:
+          number: !jmespath index
+
+{%- if cookiecutter.database == "neo4j" -%}
+- implementation: nodestream.databases:GraphDatabaseWriter
+  arguments:
+    batch_size: 1000
+    database: neo4j
+    uri: bolt://localhost:7687
+    username: neo4j
+    password: neo4j123
+{% endif %}

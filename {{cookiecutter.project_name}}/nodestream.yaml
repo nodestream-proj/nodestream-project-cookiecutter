@@ -1,0 +1,4 @@
+scopes:
+  default:
+    pipelines:
+      - sample.yaml

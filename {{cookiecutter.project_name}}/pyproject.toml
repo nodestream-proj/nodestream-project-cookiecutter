@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "{{cookiecutter.project_name}}"
+version = "0.1.0"
+description = "A new ingestion project using nodestream"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+nodestream = "^{{cookiecutter.nodestream_version}}"
+
+[tool.poetry.plugins."nodestream.plugins"]
+"argument_resolvers" = "{{cookiecutter.project_name}}.argument_resolvers"
+"interpretations" = "{{cookiecutter.project_name}}.interpretations"
+"normalizers" = "{{cookiecutter.project_name}}.normalizers"
+"value_providers" = "{{cookiecutter.project_name}}.value_providers"
