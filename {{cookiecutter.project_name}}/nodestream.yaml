@@ -1,4 +1,4 @@
 scopes:
   default:
     pipelines:
-      - sample.yaml
+      - pipelines/sample.yaml
