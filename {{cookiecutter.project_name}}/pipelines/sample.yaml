@@ -10,7 +10,6 @@
         node_type: Number
         key:
           number: !jmespath index
-{%- if cookiecutter.database == "neo4j" -%}
 
 - implementation: nodestream.databases:GraphDatabaseWriter
   arguments:
@@ -19,4 +18,3 @@
     uri: bolt://localhost:7687
     username: neo4j
     password: neo4j123
-{% endif %}
