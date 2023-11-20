@@ -2,3 +2,10 @@ scopes:
   default:
     pipelines:
       - pipelines/sample.yaml
+
+targets:
+  my-db:
+    database: neo4j
+    uri: bolt://localhost:7687
+    username: neo4j
+    password: neo4j123
