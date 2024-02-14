@@ -51,11 +51,9 @@ targets:
   #   region: us-west-2
   my-db:
     database: {{cookiecutter.database}}
-    {% if cookiecutter.database == "neo4j" %}
-    uri: bolt://localhost:7687
+    {% if cookiecutter.database == "neo4j" %}uri: bolt://localhost:7687
     username: neo4j
     password: neo4j
-    {% elif cookiecutter.database == "neptune" %}
-    host: localhost
+    {% elif cookiecutter.database == "neptune" %}host: localhost
     region: us-west-2
     {% endif %}
