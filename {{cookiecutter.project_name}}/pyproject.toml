@@ -9,6 +9,12 @@ authors = ["Your Name <your_name@your_domain.com>"]
 python = "^3.10"
 nodestream = "^{{cookiecutter.nodestream_version}}"
 
+{% if cookiecutter.database == "neo4j" %}
+nodestream-plugin-neo4j = "^{{cookiecutter.nodestream_semver_non_patch_version}}"
+{% elif cookiecutter.database == "neptune" %}
+nodestream-plugin-neptune = "^{{cookiecutter.nodestream_semver_non_patch_version}}"
+{% endif %}
+
 [tool.poetry.plugins."nodestream.plugins"]
 "argument_resolvers" = "{{cookiecutter.project_name}}.argument_resolvers"
 "interpretations" = "{{cookiecutter.project_name}}.interpretations"

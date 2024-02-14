@@ -1,11 +1,61 @@
 scopes:
+  # The scopes section is used to define pipelines and their respective configuration.
+  # Each scope is defined by a unique name and a list of pipeline configurations.
+  # The pipelines are configured by pointing to the path of a pipeline configuration file.
   default:
     pipelines:
       - pipelines/sample.yaml
 
+# Plugins are used to extend the functionality of nodestream.
+# Each plugin often has its own configruation and targets. 
+# You can read more about plugins in the documentation:
+# 
+#    https://nodestream-proj.github.io/nodestream/0.11.7/docs/guides/project-plugins
+#
+# The following is an example of a plugin configuration:
+# plugins:
+#   - name: myplugin
+#     config:
+#       service_base_url: "https://otherurl.com"
+#     targets:
+#       - target1
+#       - target2
+#     pipelines:
+#         - name: plugin_pipeline_1
+#             exclude_inherited_targets: True
+#             annotations:
+#                 my_annoation: True
+#             targets:
+#                 - target3
+
 targets:
+  # The Target Section is used to define the targets that the pipelines will use 
+  # to store the data. The targets are defined by the setting the database type 
+  # and the connection information for the database. The target below is auto-configured
+  # with a simple configuration based on your selected database type. You should modify
+  # the configuration to match your specific database connection information.
+  #
+  # For example, the following is a target for a Neo4j database:
+  #
+  # my-db:
+  #   database: neo4j
+  #   uri: bolt://localhost:7687
+  #   username: neo4j
+  #   password: neo4j
+  #
+  # The following is a target for an Amazon Neptune database:
+  #
+  # my-db:
+  #   database: neptune
+  #   host: localhost
+  #   region: us-west-2
   my-db:
-    database: neo4j
+    database: {{{cookiecutter.database}}}
+    {% if cookiecutter.database == "neo4j" %}
     uri: bolt://localhost:7687
     username: neo4j
-    password: neo4j123
+    password: neo4j
+    {% elif cookiecutter.database == "neptune" %}
+    host: localhost
+    region: us-west-2
+    {% endif %}
