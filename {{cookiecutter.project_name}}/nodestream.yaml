@@ -43,17 +43,22 @@ targets:
   #   username: neo4j
   #   password: neo4j
   #
-  # The following is a target for an Amazon Neptune database:
+  # The following is a target for an Amazon Neptune (Both Database and Analytics):
   #
-  # my-db:
+  # db-one:
   #   database: neptune
-  #   host: localhost
-  #   region: us-west-2
+  #   mode: database
+  #   host: https://<NEPTUNE_ENDPOINT>:<PORT>
+  # db-two:
+  #   database: neptune
+  #   mode: analytics
+  #   graph_id: <GRAPH_IDENTIFIER>
+  # 
   my-db:
     database: {{cookiecutter.database}}
     {% if cookiecutter.database == "neo4j" %}uri: bolt://localhost:7687
     username: neo4j
     password: neo4j
-    {% elif cookiecutter.database == "neptune" %}host: localhost
+    {% elif cookiecutter.database == "neptune" %}host: https://<NEPTUNE_ENDPOINT>:<PORT>
     region: us-west-2
     {% endif %}
